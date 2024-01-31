@@ -14,15 +14,16 @@ This project serves as a demonstration of API testing using Playwright and TypeS
 
 The project follows a standard directory structure for a Playwright and TypeScript project
 
+.
 ├── src
-| ├──support
-│ │ ├── helpers.ts
-│ │ │ └── ...
-│ ├── tests
-│ │ ├── api
-│ │ │ ├── apiTest.spec.ts
-│ │ │ └── ...
-│ └── ...
+│   ├── support
+│   │   ├── helpers.ts
+│   │   └── ...
+│   ├── tests
+│   │   ├── api
+│   │   │   ├── apiTest.spec.ts
+│   │   │   └── ...
+│   └── ...
 ├── playwright.config.ts
 ├── package.json
 └── ...
