@@ -1,9 +1,17 @@
 import { faker } from '@faker-js/faker';
 import { IBookingDetails } from './types';
-import { expect } from '@playwright/test';
+import { expect, APIResponse } from '@playwright/test';
 
 
 export class Helpers {
+
+    /**
+     * TODO:Change the user and password to get the credentials from an env file
+     */
+
+    private user: string = 'admin';
+    private password:string = 'password123';
+
     private getRandomName(): string {
         return faker.person.firstName();
     }
@@ -27,6 +35,7 @@ export class Helpers {
     private getRandomText(): string {
         return faker.person.bio();
     }
+
 
     createNewBookingDetails(): IBookingDetails {
         const bookingDetails:IBookingDetails ={
@@ -61,6 +70,19 @@ export class Helpers {
             additionalneeds:expect.any(String)
         }
     }
+
+    async getAuthToken({request}):Promise<any>{
+        return await request.post('/auth', {
+            data:{
+                username: this.user,
+                password: this.password
+            }
+        }).then(async (response:APIResponse)=>{
+            const json = await response.json();
+            return json.token;
+        })
+    }
+
 
 }
 
