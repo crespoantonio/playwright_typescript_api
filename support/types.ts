@@ -1,11 +1,11 @@
-export interface IBookingDetails {
+export type IBookingDetails = {
     firstname?: string;
     lastname?: string;
     totalprice?: number;
     depositpaid?: boolean;
     bookingdates: {
-        checkin?: Date;
-        checkout?: Date;
+        checkin?: String;
+        checkout?: String;
     };
     additionalneeds?: string;
 }
