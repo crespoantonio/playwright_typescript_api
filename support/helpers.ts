@@ -24,12 +24,12 @@ export class Helpers {
         return parseFloat(faker.commerce.price({ min: 100, max: 200, dec: 0 }));
     }
 
-    private getRandomCheckInValue(): Date {
-        return faker.date.recent();
+    private getRandomCheckInValue(): String {
+        return faker.date.recent().toISOString().slice(0,10);
     }
 
-    private getRandomCheckOutValue(): Date {
-        return faker.date.soon();
+    private getRandomCheckOutValue(): String {
+        return faker.date.soon().toISOString().slice(0,10);
     }
 
     private getRandomText(): string {
