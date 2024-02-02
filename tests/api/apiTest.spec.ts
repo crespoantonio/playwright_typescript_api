@@ -28,4 +28,19 @@ test.describe('/booking', ()=>{
         const responseBody = await response.json();
         expect(responseBody).toMatchObject(helpers.getBookingResponseValidator());
     })
+    
+    test('Update booking details', async ({request}) => {
+        const token = await helpers.getAuthToken({request});
+        const bookingDetails:IBookingDetails = helpers.createNewBookingDetails();
+        const response:APIResponse = await request.put(`/booking/${getBookingId}`, {
+            data: bookingDetails,
+            headers: {
+                "Cookie":`token=${token}`
+            }
+        });
+        expect(response.ok()).toBeTruthy();
+        expect(response.status()).toBe(200);
+        const responseBody:any = await response.json();
+        expect(responseBody).toMatchObject(helpers.getBookingResponseValidator());
+    })
 })
