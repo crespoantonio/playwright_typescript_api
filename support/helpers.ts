@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { IBookingDetails } from './types';
-import { expect, APIResponse } from '@playwright/test';
+import { expect, APIResponse, APIRequestContext } from '@playwright/test';
 
 
 export class Helpers {
@@ -9,8 +9,12 @@ export class Helpers {
      * TODO:Change the user and password to get the credentials from an env file
      */
 
-    private user: string = 'admin';
+    private user:string = 'admin';
     private password:string = 'password123';
+
+    public HTTP_OK:number = 200;
+    public HTTP_CREATED:number = 201;
+    public HTTP_NOT_FOUND:number = 404;
 
     private getRandomName(): string {
         return faker.person.firstName();
@@ -71,7 +75,7 @@ export class Helpers {
         }
     }
 
-    async getAuthToken({request}):Promise<any>{
+    async getAuthToken(request:APIRequestContext):Promise<any>{
         return await request.post('/auth', {
             data:{
                 username: this.user,
