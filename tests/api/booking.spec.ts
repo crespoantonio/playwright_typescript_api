@@ -5,6 +5,8 @@ import { IBookingDetails } from '../../support/types';
 test.describe('/booking', ()=>{
     let getBookingId:number
     let deleteBookingId:number
+    let nonexistentBookingId:number = 100000
+    
     test.beforeAll('Get all bookings', async({request})=>{
         const response:APIResponse = await request.get('/booking');
         const responseBody:any = await response.json();
@@ -57,5 +59,12 @@ test.describe('/booking', ()=>{
         expect(response.ok()).toBeTruthy();
         expect(response.status()).toBe(201);
         expect(response.statusText()).toBe('Created');
+    })
+
+    test('Attempt to get details for a non-existing booking', async({request})=>{
+        const response:APIResponse = await request.get(`/booking/${nonexistentBookingId}`);
+        expect(response.ok()).toBeFalsy();
+        expect(response.status()).toBe(404);
+        expect(response.statusText()).toBe('Not Found');
     })
 })
