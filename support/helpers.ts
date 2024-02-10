@@ -15,6 +15,7 @@ export class Helpers {
     public HTTP_OK:number = 200;
     public HTTP_CREATED:number = 201;
     public HTTP_NOT_FOUND:number = 404;
+    public METHOD_NOT_ALLOWED:number = 405;
 
     private getRandomName(): string {
         return faker.person.firstName();

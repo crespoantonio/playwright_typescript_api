@@ -67,4 +67,18 @@ test.describe('/booking', ()=>{
         expect(response.status()).toBe(helpers.HTTP_NOT_FOUND);
         expect(response.statusText()).toBe('Not Found');
     })
+
+    test('Attempt to update details for a non-existing booking', async({request})=>{
+        const token = await helpers.getAuthToken(request);
+        const bookingDetails:IBookingDetails = helpers.createNewBookingDetails();
+        const response:APIResponse = await request.put(`/booking/${nonexistentBookingId}`, {
+            data: bookingDetails,
+            headers: {
+                "Cookie":`token=${token}`
+            }
+        });
+        expect(response.ok()).toBeFalsy();
+        expect(response.status()).toBe(helpers.METHOD_NOT_ALLOWED);
+        expect(response.statusText()).toBe('Method Not Allowed');
+    })
 })
