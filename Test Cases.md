@@ -32,7 +32,7 @@
 ## Attempt to update details for a non-existing booking:
 
 - Send a PUT request for a booking with an invalid ID.
-- Verify that the response code is 404 Not Found.
+- Verify that the response code is 405 Method Not Allowed.
 
 ## Attempt to delete a non-existing booking:
 

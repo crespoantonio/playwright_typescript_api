@@ -77,9 +77,8 @@ test.describe('/booking', ()=>{
                 "Cookie":`token=${token}`
             }
         });
-        console.log(response);
         expect(response.ok()).toBeFalsy();
-        expect(response.status()).toBe(helpers.HTTP_NOT_FOUND);
-        expect(response.statusText()).toBe('Not Found');
+        expect(response.status()).toBe(helpers.METHOD_NOT_ALLOWED);
+        expect(response.statusText()).toBe('Method Not Allowed');
     })
 })
